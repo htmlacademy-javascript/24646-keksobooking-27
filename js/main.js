@@ -72,10 +72,6 @@ function getArray(features) {
   return array;
 }
 
-getRandomPositiveInteger(0, 25);
-getRandomPositiveFloat(0.2, 0.3, 6);
-
-
 const NUMBER_OF_GENERATED_OBJECTS = 10;
 const TITLES = [
   'titleA',
@@ -154,4 +150,4 @@ const createAd = () => ({
 //create array with a given amount of objects
 const GENERATED_OBJECTS = Array.from({length: NUMBER_OF_GENERATED_OBJECTS}, createAd);
 
-console.log(GENERATED_OBJECTS);
+GENERATED_OBJECTS();
