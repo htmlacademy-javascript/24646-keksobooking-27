@@ -1,3 +1,57 @@
+const NUMBER_OF_GENERATED_OBJECTS = 10;
+const TITLES = [
+  'titleA',
+  'titleB',
+  'titleC',
+  'titleD',
+  'titleE',
+];
+const TYPES = [
+  'palace',
+  'flat',
+  'house',
+  'bungalow',
+  'hotel',
+];
+const CHECKINOUT = [
+  '12:00',
+  '13:00',
+  '14:00',
+];
+const FEATURES = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner',
+];
+const DESCRIPTION = [
+  'descriptionA',
+  'descriptionB',
+  'descriptionC',
+  'descriptionD',
+  'descriptionE',
+];
+const PHOTOS = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+];
+const LAT_MIN = 35.65000;
+const LAT_MAX = 35.70000;
+const LNG_MIN = 139.70000;
+const LNG_MAX = 139.80000;
+const DECIMAL_POINT = 5;
+const ROOMS_MIN = 0;
+const ROOMS_MAX = 5;
+const GUESTS_MIN = 0;
+const GUESTS_MAX = 10;
+const PRICE_MIN = 0;
+const PRICE_MAX = 1000;
+const IMG_MIN = 0;
+const IMG_MAX = 10;
+
 // Функция взята из интернета и доработана
 // Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
 
@@ -72,74 +126,28 @@ function getArray(features) {
   return array;
 }
 
-const NUMBER_OF_GENERATED_OBJECTS = 10;
-const TITLES = [
-  'titleA',
-  'titleB',
-  'titleC',
-  'titleD',
-  'titleE',
-];
-const TYPES = [
-  'palace',
-  'flat',
-  'house',
-  'bungalow',
-  'hotel',
-];
-const CHECKINOUT = [
-  '12:00',
-  '13:00',
-  '14:00',
-];
-const FEATURES = [
-  'wifi',
-  'dishwasher',
-  'parking',
-  'washer',
-  'elevator',
-  'conditioner',
-];
-const DESCRIPTION = [
-  'descriptionA',
-  'descriptionB',
-  'descriptionC',
-  'descriptionD',
-  'descriptionE',
-];
-const PHOTOS = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-];
-const LAT_MIN = 35.65000;
-const LAT_MAX = 35.70000;
-const LNG_MIN = 139.70000;
-const LNG_MAX = 139.80000;
-
-
 //create an object - describes the author
 const createAuthor = () => ({
-  avatar: `img/avatars/user${getRandomPositiveInteger(0,10).toString().padStart(2, 0)}.png`,
+  avatar: `img/avatars/user${getRandomPositiveInteger(IMG_MIN,IMG_MAX).toString().padStart(2, '0')}.png`,
 });
 //create an object - describes the offer
 const createOffer = () => ({
   title: `${getRandomArrayElement(TITLES)}`,
-  address: `${getRandomPositiveFloat(LAT_MIN, LAT_MAX, 5), getRandomPositiveFloat(LNG_MIN, LNG_MAX, 5)}`,
-  price: `${getRandomPositiveInteger(0, 1000)}`,
+  address: `${getRandomPositiveFloat(LAT_MIN, LAT_MAX, DECIMAL_POINT), getRandomPositiveFloat(LNG_MIN, LNG_MAX, DECIMAL_POINT)}`,
+  price: `${getRandomPositiveInteger(PRICE_MIN, PRICE_MAX)}`,
   type: `${getRandomArrayElement(TYPES)}`,
-  rooms: `${getRandomPositiveInteger(0, 5)}`,
-  guests: `${getRandomPositiveInteger(0, 10)}`,
+  rooms: `${getRandomPositiveInteger(ROOMS_MIN, ROOMS_MAX)}`,
+  guests: `${getRandomPositiveInteger(GUESTS_MIN, GUESTS_MAX)}`,
   checkin: `${getRandomArrayElement(CHECKINOUT)}`,
   checkout: `${getRandomArrayElement(CHECKINOUT)}`,
-  features: `${getArray(FEATURES)}`,
+  features: `${FEATURES.slice(0, getRandomPositiveInteger(0, FEATURES.length))}`,
   description: `${getRandomArrayElement(DESCRIPTION)}`,
   photos: `${getArray(PHOTOS)}`,
 });
 //create an object - describes the location
 const createLocation = () => ({
-  lat: `${getRandomPositiveFloat(LAT_MIN, LAT_MAX, 5)}`,
-  lng: `${getRandomPositiveFloat(LNG_MIN, LNG_MAX, 5)}`,
+  lat: `${getRandomPositiveFloat(LAT_MIN, LAT_MAX, DECIMAL_POINT)}`,
+  lng: `${getRandomPositiveFloat(LNG_MIN, LNG_MAX, DECIMAL_POINT)}`,
 });
 //create an object - describes author, offer, location
 const createAd = () => ({
