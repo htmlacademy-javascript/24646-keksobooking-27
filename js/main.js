@@ -1,2 +1,3 @@
-import {GENERATED_OBJECTS} from './data.js';
-GENERATED_OBJECTS();
+import {createAd} from './data.js';
+import {showCard} from './card.js';
+showCard(createAd());
