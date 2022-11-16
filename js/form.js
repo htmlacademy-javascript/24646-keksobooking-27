@@ -58,12 +58,42 @@ const roomsOption = {
   100: ['0']
 };
 
+const minPrice = {
+  'bungalow' : 0,
+  'flat' : 1000,
+  'hotel' : 3000,
+  'house' : 5000,
+  'palace' : 10000
+};
+
+const type = form.querySelector('#type');
+const price = form.querySelector('#price');
+type.addEventListener('change', () => {
+  price.ariaPlaceholder = minPrice[type.value];
+  price.min = minPrice[type.value];
+});
+
+function checkPrice () {
+  return price.value >= Number(price.min);
+}
+
+function getPriceErrorMessage () {
+  return `Минимальная цена за ночь ${price.min}`;
+}
+
+const timein = form.querySelector('#timein');
+const timeout = form.querySelector('#timeout');
+
+timein.addEventListener('change', () =>{timeout.value = timein.value;});
+timeout.addEventListener('change', () => {timein.value = timeout.value;});
+
 const getRoomsErrorMessage = () => roomErrors[roomNumberField.value];
 
 const validateRooms = () => roomsOption[roomNumberField.value].includes(capacityField.value);
 
 pristine.addValidator(roomNumberField, validateRooms, getRoomsErrorMessage);
 pristine.addValidator(capacityField, validateRooms);
+pristine.addValidator(price, checkPrice, getPriceErrorMessage);
 
 roomNumberField.addEventListener('change', () => pristine.validate(capacityField));
 capacityField.addEventListener('change', () => pristine.validate(roomNumberField));
