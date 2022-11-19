@@ -89,40 +89,6 @@ function getArray(features) {
   return array;
 }
 
-//create an object - describes the author
-// const createAuthor = () => ({
-//   avatar: `img/avatars/user${getRandomPositiveInteger(IMG_MIN,IMG_MAX).toString().padStart(2, '0')}.png`,
-// });
-//create an object - describes the offer
-// const createOffer = () => ({
-//   title: `${getRandomArrayElement(TITLES)}`,
-//   address: `${getRandomPositiveFloat(LAT_MIN, LAT_MAX, DECIMAL_POINT), getRandomPositiveFloat(LNG_MIN, LNG_MAX, DECIMAL_POINT)}`,
-//   price: `${getRandomPositiveInteger(PRICE_MIN, PRICE_MAX)}`,
-//   type: `${getRandomArrayElement(TYPES)}`,
-//   rooms: `${getRandomPositiveInteger(ROOMS_MIN, ROOMS_MAX)}`,
-//   guests: `${getRandomPositiveInteger(GUESTS_MIN, GUESTS_MAX)}`,
-//   checkin: `${getRandomArrayElement(CHECKINOUT)}`,
-//   checkout: `${getRandomArrayElement(CHECKINOUT)}`,
-//   features: `${FEATURES.slice(0, getRandomPositiveInteger(0, FEATURES.length))}`,
-//   description: `${getRandomArrayElement(DESCRIPTION)}`,
-//   photos: `${getArray(PHOTOS)}`,
-// });
-//create an object - describes the location
-// const createLocation = () => ({
-//   lat: `${getRandomPositiveFloat(LAT_MIN, LAT_MAX, DECIMAL_POINT)}`,
-//   lng: `${getRandomPositiveFloat(LNG_MIN, LNG_MAX, DECIMAL_POINT)}`,
-// });
-//create an object - describes author, offer, location
-// export const createAd = () => ({
-//   author: createAuthor(),
-//   offer: createOffer(),
-//   location: createLocation()
-// });
-//create array with a given amount of objects
-// const GENERATED_OBJECTS = Array.from({length: NUMBER_OF_GENERATED_OBJECTS}, createAd);
-
-// export {GENERATED_OBJECTS};
-
 export const createAd = () => {
   const latCoordinate = getRandomPositiveFloat(LAT_MIN, LAT_MAX, DECIMAL_POINT);
   const lngCoordinate = getRandomPositiveFloat(LNG_MIN, LNG_MAX, DECIMAL_POINT);
@@ -148,3 +114,5 @@ export const createAd = () => {
     },
   };
 };
+const NUMBER_OF_GENERATED_OFFERS = 10;
+export const GENERATED_OFFERS = Array.from({length: NUMBER_OF_GENERATED_OFFERS}, createAd);
