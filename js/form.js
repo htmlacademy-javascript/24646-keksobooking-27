@@ -97,3 +97,37 @@ pristine.addValidator(price, checkPrice, getPriceErrorMessage);
 
 roomNumberField.addEventListener('change', () => pristine.validate(capacityField));
 capacityField.addEventListener('change', () => pristine.validate(roomNumberField));
+
+const sliderElement = document.querySelector('.ad-form__slider');
+
+noUiSlider.create(sliderElement, {
+  range: {
+    min: 0,
+    max: 100000,
+  },
+  connect: 'lower',
+  step: 1,
+  start: 0,
+  format: {
+    to: (value) => value.toFixed(0),
+    from: (value) => parseFloat(value),
+  }
+});
+
+sliderElement.noUiSlider.on('update', () => {
+  price.value = sliderElement.noUiSlider.get();
+});
+
+price.addEventListener('change', () => {
+  sliderElement.noUiSlider.set(price.value);
+});
+
+type.addEventListener('change', () => {
+  price.placeholder = minPrice[type.value];
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: minPrice[type.value],
+      max: 100000
+    }
+  });
+});
